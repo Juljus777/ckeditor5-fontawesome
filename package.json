@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "dev": "webpack --mode development --watch"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-basic-styles": "^38.1.1",
+    "@ckeditor/ckeditor5-core": "^38.1.1",
+    "@ckeditor/ckeditor5-dev-utils": "^38.1.2",
+    "@ckeditor/ckeditor5-editor-classic": "^38.1.1",
+    "@ckeditor/ckeditor5-essentials": "^38.1.1",
+    "@ckeditor/ckeditor5-heading": "^38.1.1",
+    "@ckeditor/ckeditor5-html-support": "^38.1.1",
+    "@ckeditor/ckeditor5-list": "^38.1.1",
+    "@ckeditor/ckeditor5-paragraph": "^38.1.1",
+    "@ckeditor/ckeditor5-source-editing": "^38.1.1",
+    "@ckeditor/ckeditor5-theme-lark": "^38.1.1",
+    "@ckeditor/ckeditor5-ui": "^38.1.1"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-inspector": "^4.1.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
