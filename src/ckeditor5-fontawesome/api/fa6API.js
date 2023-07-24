@@ -1,6 +1,6 @@
 const endpoint = "https://api.fontawesome.com";
 
-export const search = async ({query = "", version = "6.0.0", count = 5}) => {
+export const apiFontAwesome6Search = async ({query = "", version = "6.0.0", count = 5}) => {
     if (!query) console.err("Incorrect query");
 
     const {data} = await fetch(endpoint, {

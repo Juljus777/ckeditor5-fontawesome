@@ -9,6 +9,8 @@ module.exports = {
     // https://webpack.js.org/configuration/entry-context/
     entry: './app.js',
 
+    watch: true,
+
     // https://webpack.js.org/configuration/output/
     output: {
         path: path.resolve( __dirname, 'dist' ),
@@ -23,7 +25,7 @@ module.exports = {
                 use: [ 'raw-loader' ]
             },
             {
-                test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+                test: [/ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/, /\.css$/],
 
                 use: [
                     {

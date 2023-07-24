@@ -3,20 +3,26 @@ import {Plugin} from "@ckeditor/ckeditor5-core";
 export default class fontAwesome6Editing extends Plugin {
     init () {
         const editor = this.editor;
-        console.log("edit init");
         this._defineSchema();
         this._downcastFAIcons(editor);
         this._upcastFAIcons(editor);
     }
 
     _upcastFAIcons(editor) {
-        editor.conversion.for('upcast').elementToElement({
+        const upcast = editor.conversion.for('upcast');
+        upcast.elementToElement({
             view: {
                 name: 'i',
                 classes: 'fa'
             },
             model: (viewElement, {writer}) => {
-                return writer.createElement('faIcon')
+                if (!viewElement) return;
+                // Regex stolen from
+                // https://stackoverflow.com/a/56057539
+                // https://regex101.com/r/zPuxg0/3
+                const faRegex = 'fa-[a-zA-Z0-9-]+';
+                const icon = viewElement.getAttribute('class').match(faRegex);
+                return writer.createElement('faIcon', {icon: icon ? icon[0] : ''})
             }
         })
     }
@@ -28,6 +34,18 @@ export default class fontAwesome6Editing extends Plugin {
                 return writer.createContainerElement('i', {class: 'fa'})
             }
         })
+        editor.conversion.for('downcast').attributeToAttribute({
+            model: {
+                name: 'faIcon',
+                key: 'icon'
+            },
+            view: modelAttributeValue => {
+                return {
+                    key: 'class',
+                    value: modelAttributeValue
+                };
+            }
+        })
     }
 
     _defineSchema() {
@@ -37,8 +55,10 @@ export default class fontAwesome6Editing extends Plugin {
             isBlock: true,
             isObject: true,
             isSelectable: true,
-            isContent: true
+            isContent: true,
+            allowAttributes: [
+              'icon',
+            ],
         })
-        console.log(schema);
     }
 }

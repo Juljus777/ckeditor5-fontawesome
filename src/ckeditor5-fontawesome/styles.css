@@ -1,0 +1,16 @@
+.fa {
+    display: block;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background-color: #EEE;
+}
+
+.fa:hover {
+    background-color: #e5e5e5;
+}
+
+.fa:active,
+.fa:focus {
+    background-color: #d9d9d9;
+}
