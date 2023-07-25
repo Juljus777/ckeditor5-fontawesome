@@ -23,6 +23,9 @@ ClassicEditor
                     styles: true
                 }
             ]
+        },
+        fontAwesome6: {
+          membership: 'free',
         }
     })
     .then(editor => {

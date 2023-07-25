@@ -1,12 +1,10 @@
 import {icons} from "@ckeditor/ckeditor5-core";
 import {ButtonView, createLabeledInputText, LabeledFieldView, submitHandler, View} from "@ckeditor/ckeditor5-ui";
-import {apiFontAwesome6Search} from "./api/fa6API";
+import searchResultsView from '../views/searchResultsView';
 
-export default class fontAwesome6View extends View {
+export default class uiView extends View {
   constructor(locale, searchResultButtons = []) {
     super(locale);
-
-    console.log(searchResultButtons);
 
     this.searchResultButtons = searchResultButtons;
 
@@ -15,14 +13,28 @@ export default class fontAwesome6View extends View {
     this.saveButtonView = this._createButton('Save', icons.check, 'ck-button-save')
     this.saveButtonView.type = 'submit'
 
-    this.cancelButtonView = this._createButton('Cancel', icons.cancel, 'ck-button-save')
+    this.cancelButtonView = this._createButton('Cancel', icons.cancel, 'ck-button-cancel')
     this.cancelButtonView.delegate('execute').to(this, 'cancel');
+
+    this.resultContainer = new searchResultsView(locale, this.searchResultButtons);
+
+    this.formActions = new View(locale);
+    this.formActions.setTemplate({
+      tag: 'div',
+      attributes: {
+        class: ['ck', 'ck-fontawesome-form-actions'],
+      },
+      children: this.createCollection([
+        this.saveButtonView,
+        this.cancelButtonView
+      ])
+    })
+
 
     this.childViews = this.createCollection([
       this.searchInputView,
-      ...this.searchResultButtons,
-      this.saveButtonView,
-      this.cancelButtonView,
+      this.resultContainer,
+      this.formActions,
     ])
 
     this.setTemplate({

@@ -4,6 +4,8 @@
     width: 20px;
     height: 20px;
     background-color: #EEE;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
 }
 
 .fa:hover {
@@ -13,4 +15,26 @@
 .fa:active,
 .fa:focus {
     background-color: #d9d9d9;
+}
+
+.ck-fontawesome-form {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.ck-fontawesome-form-actions {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.ck-fontawesome-form-actions button {
+    flex: 0 0 50%;
+}
+
+.ck-button-cancel {
+    color: red;
+}
+
+.ck-fontawesome-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
